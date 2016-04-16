@@ -20,7 +20,7 @@ function scene:create( event )
 	local bg = display.newRect( 0, 0, display.contentWidth, display.contentHeight )
 	bg.anchorX = 0
 	bg.anchorY = 0
-	local pic = display.newImageRect( "flower.jpg", display.contentWidth*2, display.contentHeight*2 )
+	--local pic = display.newImageRect( "img/button/flower.jpg", display.contentWidth*2, 50)--display.contentHeight*2 )
 	--bg:setFillColor( 1, .7, .7 )	-- white
 	
 	-- create some text
@@ -51,102 +51,179 @@ function scene:create( event )
 	        width = display.contentWidth,
 	        height = display.contentHeight,
 	        scrollWidth = display.contentWidth,
-	        scrollHeight = 5000,
+	        scrollHeight = 100,
 	        topPadding = 50,
-	        bottomPadding = 20,
+	        bottomPadding = 50,
 	        horizontalScrollDisabled = true,
 	        verticalScrollDisabled = false,
 	        listener = scrollListener,
-	        backgroundColor = {1, 1, 1, 0.7}--{1, .7, .7, 0}
+	        backgroundColor = {1, .7, .7, 0.7}--{1, .7, .7, 0}
 	    }
 	)
-	scrollView.y = 200
 
-	local BlockOpt = {
+	--rect:insert(shortButton)
+
+	--local pic = display.newImageRect( "img/button/flower.jpg", display.contentWidth*2, 50)--display.contentHeight*2 )
+
+
+	local Word = {
 		left = 10,
 		top = 0,
 		width = display.contentWidth-20,
-		height = 300,
-		defaultFile = "img/button/lilacBlock.jpg",
-		overFile = "",
-		--onEvent = handleButtonEvent,
+		height = 40,
+		defaultFile = "img/button/white.bmp",
+		overFile = "img/button/white.bmp",
 	}
 
-	local BlockOpt2 = {
-		left = 10,
-		top = 0,
-		width = display.contentWidth-20,
-		height = 120,
-		defaultFile = "img/button/purpleBlock.jpg",
-		overFile = "",
-		--onEvent = handleButtonEvent,
-	}
-
-	local BlockOpt3 = {
+	local WordShort = {
 		left = 10,
 		top = 0,
 		width = display.contentWidth/2-20,
-		height = 300,
-		defaultFile = "img/button/blauBlock.jpg",
-		overFile = "",
-		--onEvent = handleButtonEvent,
-	}
-
-	local BlockOpt4 = {
-		left = 10,
-		top = 0,
-		width = display.contentWidth/2-20,
-		height = 140,
-		defaultFile = "img/button/blauBlock.jpg",
-		overFile = "",
-		--onEvent = handleButtonEvent,
+		height = 40,
+		defaultFile = "img/button/white.bmp",
+		overFile = "img/button/white.bmp",
 	}
 
 	--local buttonGroup = display.newGroup ()
 	--buttonGroup:insert (button)
+	local word = {}
+	local w = 0
 
-	local shortButton = widget.newButton (BlockOpt2)
+	local shortButton = widget.newButton ({
+		left = 10,
+		top = 0,
+		width = display.contentWidth-20,
+		height = 120,
+		defaultFile = "img/button/smokey.jpg",
+		overFile = "",
+		--onEvent = handleButtonEvent,
+	})
 	shortButton.y = 30
+	scrollView:insert( shortButton )
+	word[w] = widget.newButton (Word)
+	word[w].y = 110
+	word[w]:setLabel ("How NOT to Cake Your Makeup")
+	scrollView:insert( word[w] )
+	w = w + 1
 
-	local longButton = widget.newButton (BlockOpt3)
-	longButton.y = 260
+	local longButton = widget.newButton ({
+		left = 10,
+		top = 0,
+		width = display.contentWidth/2-20,
+		height = 340,
+		defaultFile = "img/button/pencil.jpg",
+		overFile = "",
+		--onEvent = handleButtonEvent,
+	})
+	longButton.x, longButton.y = display.contentWidth/4, 320
+	word[w] = widget.newButton (WordShort)
+	word[w].y = 510
+	word[w]:setLabel ("Percil Brow Pencil")
+	scrollView:insert( word[w] )
+	w = w + 1
 
 	local smallButton = {}
-	smallButton[0] =  widget.newButton (BlockOpt4)
-	smallButton[0].x, smallButton[0].y = display.contentWidth/4*3, 180
-	smallButton[1] =  widget.newButton (BlockOpt4)
-	smallButton[1].x, smallButton[1].y = display.contentWidth/4*3, 340
+	smallButton[0] =  widget.newButton ({
+		left = 10,
+		top = 0,
+		width = display.contentWidth/2-20,
+		height = 140,
+		defaultFile = "img/button/soap.jpg",
+		overFile = "",
+		--onEvent = handleButtonEvent,
+	})
+	smallButton[0].x, smallButton[0].y = display.contentWidth/4*3, 220
+	word[w] = widget.newButton(WordShort)
+	word[w].x, word[w].y = display.contentWidth/4*3, 310
+	word[w]:setLabel ("Homemake Soap")
+	scrollView:insert( word[w] )
+	w = w + 1
+
+	smallButton[1] =  widget.newButton ({
+		left = 10,
+		top = 0,
+		width = display.contentWidth/2-20,
+		height = 140,
+		defaultFile = "img/button/facial.jpg",
+		overFile = "",
+		--onEvent = handleButtonEvent,
+	})
+	smallButton[1].x, smallButton[1].y = display.contentWidth/4*3, 420
+	word[w] = widget.newButton(WordShort)
+	word[w].x, word[w].y = display.contentWidth/4*3, 510
+	word[w]:setLabel ("Everyday Facial")
+	scrollView:insert( word[w] )
+	w = w + 1
 
 	local buttonGroup = display.newGroup ()
 	local button = {}
-	for i = 0, 5, 1 do
-		button[i] = widget.newButton (BlockOpt)
-		button[i]:setLabel(i)
+	button[0] = widget.newButton ({
+		left = 10,
+		top = 0,
+		width = display.contentWidth-20,
+		height = 300,
+		defaultFile = "img/button/foundation.jpg",
+		overFile = "",
+		onEvent = handleButtonEvent,
+	})
+	button[1] = widget.newButton ({
+		left = 10,
+		top = 0,
+		width = display.contentWidth-20,
+		height = 300,
+		defaultFile = "img/button/lipstick.jpg",
+		overFile = "",
+		onEvent = handleButtonEvent,
+	})
+
+	word[w] = widget.newButton(Word)
+	word[w]:setLabel("Best Foundations for All Skin Types")
+	scrollView:insert( word[w] )
+	w = w + 1
+	word[w] = widget.newButton(Word)
+	word[w]:setLabel("The Power of Red Lipstick")
+	scrollView:insert( word[w] )
+	w = w + 1
+
+	w = w - 2
+
+	for i = 0, 1, 1 do
+		--button[i] = widget.newButton (BlockOpt)
 		if i == 0 then
-			button[i].y = 580
+			button[i].y = 700
+			word[w].y =  870
 		else
-			button[i].y = 580+320*i
+			button[i].y = 700+360*i
 		end
-		button[i]:setLabel (title)
+		--button[i]:setLabel (title)
 		buttonGroup:insert ( button[i] )
-		
+		word[w].y = 870+360*i
+		w = w + 1
 	end
+
+	
+	--word[w]:setLabel ("Best Foundations for All Skin Types")
+
 	scrollView:insert(buttonGroup)
 
 	-- all objects must be added to group (e.g. self.view)
 	sceneGroup:insert( bg )
-	sceneGroup:insert ( pic )
+	--sceneGroup:insert ( pic )
 	sceneGroup:insert( title )
 	sceneGroup:insert( summary )
 
 	-- MY CODE --
 	sceneGroup:insert( scrollView )
-	scrollView:insert( shortButton )
+	
 	scrollView:insert(longButton)
 	scrollView:insert(smallButton[0])
 	scrollView:insert(smallButton[1])
 	--scrollView:insert ( buttonGroup )
 
+end
+
+function handleButtonEvent ( event )
+	composer.gotoScene ("view4")
 end
 
 function scene:show( event )
