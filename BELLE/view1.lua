@@ -67,7 +67,7 @@ function scene:create( event )
 		top = 0,
 		width = display.contentWidth-20,
 		height = 300,
-		defaultFile = "lilacBlock.jpg",
+		defaultFile = "img/button/lilacBlock.jpg",
 		overFile = "",
 		--onEvent = handleButtonEvent,
 	}
@@ -77,7 +77,7 @@ function scene:create( event )
 		top = 0,
 		width = display.contentWidth-20,
 		height = 120,
-		defaultFile = "purpleBlock.jpg",
+		defaultFile = "img/button/purpleBlock.jpg",
 		overFile = "",
 		--onEvent = handleButtonEvent,
 	}
@@ -87,7 +87,7 @@ function scene:create( event )
 		top = 0,
 		width = display.contentWidth/2-20,
 		height = 300,
-		defaultFile = "blauBlock.jpg",
+		defaultFile = "img/button/blauBlock.jpg",
 		overFile = "",
 		--onEvent = handleButtonEvent,
 	}
@@ -97,7 +97,7 @@ function scene:create( event )
 		top = 0,
 		width = display.contentWidth/2-20,
 		height = 140,
-		defaultFile = "blauBlock.jpg",
+		defaultFile = "img/button/blauBlock.jpg",
 		overFile = "",
 		--onEvent = handleButtonEvent,
 	}
