@@ -21,32 +21,36 @@ local myList = nil
 
 
 local tempA = {}
-tempA.title = "Foundation review"
+tempA.title = "Detoxifying Black Cleanser"
 tempA.pubDate = os.date("%a")..", "..os.date("%d").." "..os.date("%b").." "..os.date("%Y").." "..os.date("%X")
-tempA.content = "Liquid foundation is the best!!!!!"
+tempA.content = "Here's another water-soluble gel cleanser infused with charcoal for its claimed ability to detoxify skin. As it turns out, skin cannot be detoxified (we explain why in the More Info section), but this is still an interesting cleanser to consider if you have normal to oily or combination skin."
 
 local tempB = {}
 tempB.title = "Lipstick review"
-tempB.pubDate = os.date("%a")..", "..os.date("%d").." "..os.date("%b").." "..os.date("%Y").." "..os.date("%X")
-tempB.content = "FF0000 8/10   255,0,0 5/10"
+--tempB.pubDate = os.date("%a")..", "..os.date("%d").." "..os.date("%b").." "..os.date("%Y").." "..os.date("%X")
+tempB.pubDate ="Sat, 16 Apr 2016 13:14:20"
+tempB.content = "The first thing you'll notice upon using this is that when mixed with water, the cleanser warms up, a sensation some will find pleasing while others may find it unpleasant. The warming occurs when water reacts with certain ingredients in the cleanser, but this sensation doesn't allow the cleanser to penetrate any \"deeper\" into skin, nor does it aid in purging toxins."
 
 
 local tempC = {}
 tempC.title = "Simple makeup for beginners"
-tempC.pubDate = os.date("%a")..", "..os.date("%d").." "..os.date("%b").." "..os.date("%Y").." "..os.date("%X")
+--tempC.pubDate = os.date("%a")..", "..os.date("%d").." "..os.date("%b").." "..os.date("%Y").." "..os.date("%X")
+tempC.pubDate ="Wed, 06 Apr 2016 22:58:01"
 tempC.content = "Things you need: 1. BB cream 2. a smile :)"
 
 
 local tempD = {}
 tempD.title = "How to choose your cosmetics"
-tempD.pubDate = os.date("%a")..", "..os.date("%d").." "..os.date("%b").." "..os.date("%Y").." "..os.date("%X")
+--tempD.pubDate = os.date("%a")..", "..os.date("%d").." "..os.date("%b").." "..os.date("%Y").." "..os.date("%X")
+tempD.pubDate = "Mon, 04 Apr 2016 23:59:59"
 tempD.content = "Some useful tips for choosing your first cosmetics:"
 
 
 local tempE = {}
-tempE.title = "Lip Stick vs. Lip Gloss"
-tempE.pubDate = os.date("%a")..", "..os.date("%d").." "..os.date("%b").." "..os.date("%Y").." "..os.date("%X")
-tempE.content = "blah blah blah"
+tempE.title = "10 Makeup Tricks "
+--tempE.pubDate = os.date("%a")..", "..os.date("%d").." "..os.date("%b").." "..os.date("%Y").." "..os.date("%X")
+tempE.pubDate = "Mon, 28 Mar 2016 11:26:56"
+tempE.content = "1. Never put concealer or foundation on your eyelids as a base, it will cause your eye makeup to crease."
 
 local tempDB = {tempA,tempB,tempC,tempD,tempE}
 
@@ -99,7 +103,7 @@ local function onRowRender(event)
     row.bg = display.newRect(0, 0, display.contentWidth, 60)
     row.bg.anchorX = 0
     row.bg.anchorY = 0
-    row.bg:setFillColor( 1, 1, 1 )
+    row.bg:setFillColor(0.86, 0.61, 0.61 )
 
     row:insert(row.bg)
     
@@ -118,7 +122,7 @@ local function onRowRender(event)
     row.title = display.newText( myTitle, 12, 0, Constant, 18 )
     row.title.anchorX = 0
     row.title.anchorY = 0.5
-    row.title:setFillColor( 0 )
+    row.title:setFillColor( 1)
 
     row.title.y = 22
     row.title.x = 42
@@ -134,7 +138,7 @@ local function onRowRender(event)
     row.subtitle.x = 42
 
 
-    row.rightArrow = display.newImageRect("Icon.png", 20, 20)
+    row.rightArrow = display.newImageRect("rightArrow.png", 10, 10)
     row.rightArrow.x = display.contentWidth - 20
     row.rightArrow.y = row.height / 2
 
@@ -245,7 +249,7 @@ function scene:create( event )
 	params = event.params
 
 	local background = display.newRect(0,0,display.contentWidth, display.contentHeight)
-    background:setFillColor( 1, 1, 1 )
+    background:setFillColor( 0.86, 0.61, 0.61  )
     background.x = display.contentWidth / 2
     background.y = display.contentHeight / 2
 
@@ -284,7 +288,7 @@ function scene:create( event )
     sceneGroup:insert(myList)
 
     local tabBar = display.newRect(0,0,display.contentWidth, 50)
-    tabBar:setFillColor(0.8,0.8,0.8)
+    tabBar:setFillColor(1)
     tabBar.x = display.contentWidth / 2
     tabBar.y = 50 / 2
 

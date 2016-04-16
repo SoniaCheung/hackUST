@@ -66,15 +66,15 @@ function scene:create( event )
 
     print("create scene")
     local background = display.newRect(0,0,display.contentWidth, display.contentHeight)
-    background:setFillColor( 1, 1, 1 )
+    background:setFillColor( 0.86, 0.61, 0.61  )
     background.x = display.contentCenterX
     background.y = display.contentCenterY
 
     sceneGroup:insert(background)
 
 
-    local title = display.newText("New Post", 0, 0, native.systemFont, 20)
-    title:setFillColor( 0 ) -- black
+    local title = display.newText("~New Post~", 0, 0, native.systemFont, 20)
+    title:setFillColor( 1 ) -- black
     title.x = display.contentWidth * 0.5
     title.y = 80
     
@@ -82,7 +82,7 @@ function scene:create( event )
  
 
     local tabBar = display.newRect(0,0,display.contentWidth, 50)
-    tabBar:setFillColor(0.8,0.8,0.8)
+    tabBar:setFillColor(1)
     tabBar.x = display.contentWidth / 2
     tabBar.y = 50 / 2
 
@@ -106,14 +106,14 @@ function scene:create( event )
         }
     )
     local titleDis = display.newText("Title", 0, 0, native.systemFont, 15)
-    titleDis:setFillColor( 0 ) -- black
+    titleDis:setFillColor( 1 ) -- black
     titleDis.x = 65
     titleDis.y = 140
 
     local titleField = native.newTextField( 150, 170, 200, 30 )
 
     local contentDis = display.newText("Content", 0, 0, native.systemFont, 15)
-    contentDis:setFillColor( 0 ) -- black
+    contentDis:setFillColor( 1 ) -- black
     contentDis.x = 80
     contentDis.y = 210
 

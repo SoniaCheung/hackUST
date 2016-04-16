@@ -73,7 +73,7 @@ function scene:create( event )
 
     print("create scene")
     local background = display.newRect(0,0,display.contentWidth, display.contentHeight)
-    background:setFillColor( 1, 1, 1 )
+    background:setFillColor(0.86, 0.61, 0.61  )
     background.x = display.contentCenterX
     background.y = display.contentCenterY
 
@@ -85,7 +85,7 @@ function scene:create( event )
     local postTime = blogPost.pubDate
 
     local title = display.newText( postTitle, 0, 0, native.systemFont, 20)
-    title:setFillColor( 0 ) -- black
+    title:setFillColor( 1 ) -- black
     title.x = display.contentWidth * 0.5
     title.y = 80
     
@@ -100,13 +100,13 @@ function scene:create( event )
                             font = native.systemFont, fontSize = 13, 
                             align = "left" }
     local summary = display.newText( newTextParams )
-    summary:setFillColor( 0 ) -- black
+    summary:setFillColor( 1 ) -- black
     summary.x = display.contentWidth * 0.5 + 10
     summary.y = title.y + 215
     
 
     local tabBar = display.newRect(0,0,display.contentWidth, 50)
-    tabBar:setFillColor(0.8,0.8,0.8)
+    tabBar:setFillColor(1)
     tabBar.x = display.contentWidth / 2
     tabBar.y = 50 / 2
 
