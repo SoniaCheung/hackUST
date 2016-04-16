@@ -73,6 +73,7 @@ function scene:create( event )
 	sceneGroup:insert( profileImg)
 	sceneGroup:insert( addBtn)
 	sceneGroup:insert( nameText)
+	sceneGroup:insert( divLine1)
 	sceneGroup:insert( scrollView)
 end
 
