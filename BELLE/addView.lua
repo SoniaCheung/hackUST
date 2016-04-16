@@ -52,7 +52,6 @@ function scene:create( event )
 		text2[a].y = 35 * a +70
 		textfield[a] = native.newTextField( display.contentCenterX + 35, 35 * a +70, display.contentWidth * 0.6, 25 )
 	    productGroup:insert(text2[a])
-	    productGroup:insert(textfield[a])
 	end
 
 	local addBackground = display.newRect( display.contentCenterX, 410, display.contentWidth * 0.8, 30 )
@@ -60,57 +59,81 @@ function scene:create( event )
 	local add = display.newText( "+", display.contentCenterX, 410, native.systemFont, 30 )
 	add:setFillColor( 1 )
 
-local radioGroup = display.newGroup()
+	local radioGroup = display.newGroup()
 
--- Create two associated radio buttons (inserted into the same display group)
-local radioButton1 = widget.newSwitch(
-    {
-        left = 30,
-        top = 270,
-        style = "radio",
-        id = "RadioButton1",
-        initialSwitchState = true,
-        onPress = onSwitchPress
-    }
-)
-radioGroup:insert( radioButton1 )
+	-- Create two associated radio buttons (inserted into the same display group)
+	local radioButton1 = widget.newSwitch(
+	    {
+	        left = 30,
+	        top = 270,
+	        style = "radio",
+	        id = "RadioButton1",
+	        initialSwitchState = true,
+	        onPress = onSwitchPress
+	    }
+	)
+	radioGroup:insert( radioButton1 )
 
-local radioButton2 = widget.newSwitch(
-    {
-        left = display.contentCenterX,
-        top = 270,
-        style = "radio",
-        id = "RadioButton2",
-        onPress = onSwitchPress
-    }
-)
-radioGroup:insert( radioButton2 )
+	local text5 = display.newText( "Hot", 0, 0, native.systemFont, 18 )
+	text5:setFillColor( 0 )	-- black
+	text5.x = 30 +60
+	text5.y = 285
+	radioGroup:insert( text5 )
 
-local radioGroup2 = display.newGroup()
+	local text6 = display.newText( "Cold", 0, 0, native.systemFont, 18 )
+	text6:setFillColor( 0 )	-- black
+	text6.x = display.contentCenterX + 60
+	text6.y = 285
+	radioGroup:insert( text6 )
 
--- Create two associated radio buttons (inserted into the same display group)
-local radioButton3 = widget.newSwitch(
-    {
-        left = 30,
-        top = 350,
-        style = "radio",
-        id = "RadioButton1",
-        initialSwitchState = true,
-        onPress = onSwitchPress
-    }
-)
-radioGroup2:insert( radioButton3 )
+	local radioButton2 = widget.newSwitch(
+	    {
+	        left = display.contentCenterX,
+	        top = 270,
+	        style = "radio",
+	        id = "RadioButton2",
+	        onPress = onSwitchPress
+	    }
+	)
+	radioGroup:insert( radioButton2 )
 
-local radioButton4 = widget.newSwitch(
-    {
-        left = display.contentCenterX,
-        top = 350,
-        style = "radio",
-        id = "RadioButton2",
-        onPress = onSwitchPress
-    }
-)
-radioGroup2:insert( radioButton4 )
+	local radioGroup2 = display.newGroup()
+
+	-- Create two associated radio buttons (inserted into the same display group)
+	local radioButton3 = widget.newSwitch(
+	    {
+	        left = 30,
+	        top = 350,
+	        style = "radio",
+	        id = "RadioButton1",
+	        initialSwitchState = true,
+	        onPress = onSwitchPress
+	    }
+	)
+	radioGroup2:insert( radioButton3 )
+
+	local text7 = display.newText( "Wet", 0, 0, native.systemFont, 18 )
+	text7:setFillColor( 0 )	-- black
+	text7.x = 30 +60
+	text7.y = 365
+	radioGroup2:insert( text7 )
+
+	local text8 = display.newText( "Dry", 0, 0, native.systemFont, 18 )
+	text8:setFillColor( 0 )	-- black
+	text8.x = display.contentCenterX + 60
+	text8.y = 365
+	radioGroup2:insert( text8 )
+
+	local radioButton4 = widget.newSwitch(
+	    {
+	        left = display.contentCenterX,
+	        top = 350,
+	        style = "radio",
+	        id = "RadioButton2",
+	        onPress = onSwitchPress
+	    }
+	)
+	radioGroup2:insert( radioButton4 )
 
 	-- all objects must be added to group (e.g. self.view)
 	sceneGroup:insert( bg )
@@ -119,6 +142,10 @@ radioGroup2:insert( radioButton4 )
 	sceneGroup:insert( text3 )
 	sceneGroup:insert( text4 )
 	sceneGroup:insert( productGroup )
+	sceneGroup:insert( radioGroup )
+	sceneGroup:insert( radioGroup2 )
+	sceneGroup:insert( addBackground )
+	sceneGroup:insert( add )
 --	addBackground:addEventListener( "tap", addProduct )
 end
 
@@ -146,6 +173,12 @@ function scene:hide( event )
 		--
 		-- INSERT code here to pause the scene
 		-- e.g. stop timers, stop animation, unload sounds, etc.)
+		for a = 1, 4, 1 do
+			if textfield[a] then
+				textfield[a]: removeSelf()
+				textfield[a] = nil
+			end
+		end
 	elseif phase == "did" then
 		-- Called when the scene is now off screen
 	end
@@ -153,7 +186,7 @@ end
 
 function scene:destroy( event )
 	local sceneGroup = self.view
-	
+
 	-- Called prior to the removal of scene's "view" (sceneGroup)
 	-- 
 	-- INSERT code here to cleanup the scene
@@ -162,8 +195,6 @@ end
 
 ---------------------------------------------------------------------------------
 function addProduct()
-	productGroup:removeSelf()
-	productGroup = display.newGroup()
 
 end
 -- Listener setup
