@@ -53,6 +53,10 @@ local tempDB = {tempA,tempB,tempC,tempD,tempE}
 
 local blogPosts = {}
 
+local function handleButtonEvent( event )
+    print( "I am here!" )  -- Reference to button's 'id' parameter
+end
+
 local onRowTouch = function( event )
     if event.phase == "release" then
         
@@ -71,6 +75,7 @@ local onRowTouch = function( event )
     end
     return true
 end
+
 
 local function onRowRender(event)
     print("row render")
@@ -238,7 +243,6 @@ function scene:create( event )
     sceneGroup:insert(background)
 
     
-
 	local reloadBar = display.newRect(0,0,display.contentWidth, display.contentHeight)
     reloadBar.isVisible = false
     reloadBar.isHitTestable = true
@@ -269,6 +273,31 @@ function scene:create( event )
     }
 
     sceneGroup:insert(myList)
+
+    local tabBar = display.newRect(0,0,display.contentWidth, 50)
+    tabBar:setFillColor(0.8,0.8,0.8)
+    tabBar.x = display.contentWidth / 2
+    tabBar.y = 50 / 2
+
+    sceneGroup:insert(tabBar)
+
+    local title = display.newText( "BLOG", 0, 0, native.systemFont, 20)
+    title:setFillColor( 0 ) -- black
+    title.x = display.contentWidth * 0.5
+    title.y = 25
+    sceneGroup:insert(title)
+
+    local addPost = widget.newButton(
+	    {
+	        left = display.contentWidth-130,
+	        top = 0,
+	        id = "addPost",
+	        label = "ADD",
+	        onEvent = handleButtonEvent
+	    }
+	)
+
+	sceneGroup:insert(addPost)
 
 end
 

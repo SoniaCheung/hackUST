@@ -21,7 +21,7 @@ local function onSecondView( event )
 	composer.gotoScene( "view2" )
 end
 
-local function onForthView( event )
+local function onThirdView( event )
 	composer.gotoScene( "blog" )
 end
 
@@ -33,8 +33,8 @@ end
 local tabButtons = {
 	{ label="First", defaultFile="icon1.png", overFile="icon1-down.png", width = 32, height = 32, onPress=onFirstView, selected=true },
 	{ label="Second", defaultFile="icon2.png", overFile="icon2-down.png", width = 32, height = 32, onPress=onSecondView },
-	{ label="Third", defaultFile="icon2.png", overFile="icon2-down.png", width = 32, height = 32, onPress=onSecondView },
-	{ label="Forth", defaultFile="icon2.png", overFile="icon2-down.png", width = 32, height = 32, onPress=onForthView },
+	{ label="Third", defaultFile="icon2.png", overFile="icon2-down.png", width = 32, height = 32, onPress=onThirdView },
+	{ label="Forth", defaultFile="icon2.png", overFile="icon2-down.png", width = 32, height = 32, onPress=onSecondView },
 }
 
 -- create the actual tabBar widget

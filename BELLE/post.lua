@@ -45,7 +45,7 @@ local scene = composer.newScene()
 
 local widget = require("widget")
 
-local function handleTabBarEvent( event )
+local function handletabBarEvent( event )
     print( event.target.id )  -- Reference to button's 'id' parameter
 end
 
@@ -104,11 +104,31 @@ function scene:create( event )
     summary.x = display.contentWidth * 0.5 + 10
     summary.y = title.y + 215
     
+
+    local tabBar = display.newRect(0,0,display.contentWidth, 50)
+    tabBar:setFillColor(0.8,0.8,0.8)
+    tabBar.x = display.contentWidth / 2
+    tabBar.y = 50 / 2
+
+     local backPost = widget.newButton(
+        {
+            left = 0,
+            top = 0,
+            id = "backPost",
+            label = "<< GO BACK",
+            onEvent = goBack
+        }
+    )
+
+    
+
+
     -- all objects must be added to group (e.g. self.view)
     sceneGroup:insert( title )
     sceneGroup:insert( writeDate )
     sceneGroup:insert( summary )
-
+    sceneGroup:insert(tabBar)
+    sceneGroup:insert(backPost)
 end
 
 function scene:show( event )
