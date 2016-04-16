@@ -73,27 +73,40 @@ function scene:create( event )
 end
 
 -- TO-DO: Add Friend Function
-function addFriend(event)
+function addFriend( event )
 	print ("Add Friend")
 end
 
 function addRowToScrollView()
 
-	local nameSection = {"My Information", "My Cosmetic", "My Friend"}
+	local nameSection = {"My SkinType :: Combination - Oily", "Age Group :: 20 - 30","My Cosmetic", "My Friend"}
+	local iconSection = {"", "", }
 	local sectionBlock = {}
-	for i = 1, 3 do
-		sectionBlock[i] = display.newText(nameSection[i], 10, 10, native.systemFont, 16)
-		sectionBlock[i].x =  display.contentCenterX
+	for i = 1, 4 do
+		sectionBlock[i] = display.newText(nameSection[i], 150, 40, native.systemFont, 16)
+		sectionBlock[i].x = display.contentCenterX
 		if i == 1 then
 			sectionBlock[i].y = hSpacing
+		else if i ==2 then
+				sectionBlock[i].y = sectionBlock[i-1].y + hSpacing * 0.5
+			else
+				sectionBlock[i].y = sectionBlock[i-1].y + hSpacing *2
+			end
+		end
+
+		if i == 3 then
+			sectionBlock[i]:addEventListener("tap",changeSceneProduct)
 		else
-			sectionBlock[i].y = sectionBlock[i-1].y + hSpacing *2
 		end
 		scrollView:insert( sectionBlock[i])
 	end
 	
 end
 
+function changeSceneProduct(event)
+	composer.gotoScene( "view4-database", {effect = "crossFade", time = 800} )
+	composer.removeScene( "view4" )
+end
 
 function scene:show( event )
 	local sceneGroup = self.view
