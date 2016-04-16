@@ -237,6 +237,8 @@ function scene:create( event )
 
     sceneGroup:insert(background)
 
+    
+
 	local reloadBar = display.newRect(0,0,display.contentWidth, display.contentHeight)
     reloadBar.isVisible = false
     reloadBar.isHitTestable = true
@@ -256,7 +258,7 @@ function scene:create( event )
     local tHeight = display.contentHeight
 
     myList = widget.newTableView{ 
-        top = 0, 
+        top = 50, 
         width = tWidth, 
         height = tHeight, 
         maskFile = maskFile,
