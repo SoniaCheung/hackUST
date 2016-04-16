@@ -37,20 +37,24 @@ function scene:create( event )
 	profileImg.y = display.contentHeight * 1/5
 
 	local addBtn = display.newImage("img/profile/addBtn.png")
-	addBtn.width = 40
-	addBtn.height = 40
-	addBtn.x = display.contentWidth * 3/4 
+	addBtn.width = 50
+	addBtn.height = 50
+	addBtn.x = profileImg.x + hSpacing *2.5
 	addBtn.y = display.contentHeight * 1/5
 	addBtn:addEventListener( "tap", addFriend)
 
-	local nameTextPara = { text = "SONIA",
-							x = 0, y = 0,
-							font = native.systemFont, fontSize = 16,
-							align = "Center"}
-	local  nameText = display.newText( nameTextPara)
-	nameText:setFillColor( 0 )
+	local  nameText = display.newImage("img/profile/SONIA.png")
+	nameText.width = 90
+	nameText.height = 70
+	nameText.rotation = -20
 	nameText.x = wSpacing * 2
 	nameText.y = profileImg.y + hSpacing * 0.75
+
+	local divLine1 = display.newImage("img/profile/line.png")
+	divLine1.width = display.contentWidth * 4/5
+	divLine1.height = 20
+	divLine1.x = display.contentCenterX
+	divLine1.y = nameText.y + hSpacing * 0.95
 
 	local widget = require("widget")
 
@@ -60,7 +64,7 @@ function scene:create( event )
 							horizontalScrollDisabled = true,
 							backgroundColor = { 0.86, 0.61, 0.61 }
 						}
-	scrollView.y = display.contentHeight * 2/3 - hSpacing * 0.5
+	scrollView.y = display.contentHeight * 2/3 - hSpacing * 0.15
 	addRowToScrollView()
 	
 	-- all objects must be added to group (e.g. self.view)
@@ -80,8 +84,11 @@ end
 function addRowToScrollView()
 
 	local nameSection = {"My SkinType :: Combination - Oily", "Age Group :: 20 - 30","My Cosmetic", "My Friend"}
-	local iconSection = {"", "", }
+	local iconSection = {"", "", "img/profile/makeupBag.png", "img/profile/friend.png"}
+	local line = {"0","1","1","0"}
 	local sectionBlock = {}
+	local iconBlock = {}
+	local lineImg = {}
 	for i = 1, 4 do
 		sectionBlock[i] = display.newText(nameSection[i], 150, 40, native.systemFont, 16)
 		sectionBlock[i].x = display.contentCenterX
@@ -90,7 +97,7 @@ function addRowToScrollView()
 		else if i ==2 then
 				sectionBlock[i].y = sectionBlock[i-1].y + hSpacing * 0.5
 			else
-				sectionBlock[i].y = sectionBlock[i-1].y + hSpacing *2
+				sectionBlock[i].y = sectionBlock[i-1].y + hSpacing *1.5
 			end
 		end
 
@@ -98,7 +105,30 @@ function addRowToScrollView()
 			sectionBlock[i]:addEventListener("tap",changeSceneProduct)
 		else
 		end
+
+		if line[i] == "1" then
+			lineImg[i] = display.newImage("img/profile/line2.png")
+			lineImg[i].width = display.contentWidth
+			lineImg[i].height = 7
+			lineImg[i].x = display.contentCenterX
+			lineImg[i].y = sectionBlock[i].y + hSpacing * 0.75
+		else
+			lineImg[i] = display.newText("", 150, 40, native.systemFont, 16)
+		end
+
+		if iconSection[i] ~= "" then
+			iconBlock[i] = display.newImage(iconSection[i])
+			iconBlock[i].width = 35
+			iconBlock[i].height = 35
+			iconBlock[i].x = display.contentCenterX - hSpacing * 2
+			iconBlock[i].y = sectionBlock[i].y
+		else
+			iconBlock[i] = display.newText("", 150, 40, native.systemFont, 16)
+		end
+
+		scrollView:insert( iconBlock[i])
 		scrollView:insert( sectionBlock[i])
+		scrollView:insert( lineImg[i])
 	end
 	
 end
