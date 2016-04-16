@@ -7,6 +7,9 @@
 local composer = require( "composer" )
 local scene = composer.newScene()
 
+local wSpacing = 30
+local hSpacing = 40
+
 function scene:create( event )
 	local sceneGroup = self.view
 	
@@ -20,28 +23,77 @@ function scene:create( event )
 	bg.anchorX = 0
 	bg.anchorY = 0
 	bg:setFillColor( 1 )	-- white
-	
-	-- create some text
-	local title = display.newText( "Own Profile ＋ fds profile", 0, 0, native.systemFont, 32 )
-	title:setFillColor( 0 )	-- black
-	title.x = display.contentWidth * 0.5
-	title.y = 125
-	
-	local newTextParams = { text = "TODO\n皮皮 － profile", 
-							x = 0, y = 0, 
-							width = 310, height = 310, 
-							font = native.systemFont, fontSize = 14, 
-							align = "center" }
-	local summary = display.newText( newTextParams )
-	summary:setFillColor( 0 ) -- black
-	summary.x = display.contentWidth * 0.5 + 10
-	summary.y = title.y + 215
+
+	local coverImg = display.newImage( "img/profile/coverPhoto.png")
+	coverImg.width = display.contentWidth
+	coverImg.height = display.contentHeight * 2/5
+	coverImg.x = display.contentCenterX
+	coverImg.y = 0
+
+	local profileImg = display.newImage( "img/profile/profileImg.png")
+	profileImg.width = 125
+	profileImg.height = 125
+	profileImg.x = display.contentCenterX
+	profileImg.y = display.contentHeight * 1/5
+
+	local addBtn = display.newImage("img/profile/addBtn.png")
+	addBtn.width = 40
+	addBtn.height = 40
+	addBtn.x = display.contentWidth * 3/4 
+	addBtn.y = display.contentHeight * 1/5
+	addBtn:addEventListener( "tap", addFriend)
+
+	local nameTextPara = { text = "SONIA",
+							x = 0, y = 0,
+							font = native.systemFont, fontSize = 16,
+							align = "Center"}
+	local  nameText = display.newText( nameTextPara)
+	nameText:setFillColor( 0 )
+	nameText.x = wSpacing * 2
+	nameText.y = profileImg.y + hSpacing * 0.75
+
+	local widget = require("widget")
+
+	scrollView = widget.newScrollView{ 
+							x = display.contentCenterX,
+							height = display.contentHeight * 3/5, width = display.contentWidth,
+							horizontalScrollDisabled = true,
+							backgroundColor = { 0.86, 0.61, 0.61 }
+						}
+	scrollView.y = display.contentHeight * 2/3 - hSpacing * 0.5
+	addRowToScrollView()
 	
 	-- all objects must be added to group (e.g. self.view)
 	sceneGroup:insert( bg )
-	sceneGroup:insert( title )
-	sceneGroup:insert( summary )
+	sceneGroup:insert( coverImg)
+	sceneGroup:insert( profileImg)
+	sceneGroup:insert( addBtn)
+	sceneGroup:insert( nameText)
+	sceneGroup:insert( scrollView)
 end
+
+-- TO-DO: Add Friend Function
+function addFriend(event)
+	print ("Add Friend")
+end
+
+function addRowToScrollView()
+
+	local nameSection = {"My Information", "My Cosmetic", "My Friend"}
+	local sectionBlock = {}
+	for i = 1, 3 do
+		sectionBlock[i] = display.newText(nameSection[i], 10, 10, native.systemFont, 16)
+		sectionBlock[i].x =  display.contentCenterX
+		if i == 1 then
+			sectionBlock[i].y = hSpacing
+		else
+			sectionBlock[i].y = sectionBlock[i-1].y + hSpacing *2
+		end
+		scrollView:insert( sectionBlock[i])
+	end
+	
+end
+
 
 function scene:show( event )
 	local sceneGroup = self.view
@@ -78,6 +130,18 @@ function scene:destroy( event )
 	-- 
 	-- INSERT code here to cleanup the scene
 	-- e.g. remove display objects, remove touch listeners, save state, etc.
+end
+
+-- button for My Cosmo Bag
+local widget = require( "widget" )
+
+-- Function to handle button events
+local function handleButtonEvent( event )
+
+    if ( "ended" == event.phase ) then
+    	composer.gotoScene( "view4-database" )
+        print( "Button was pressed and released" )
+    end
 end
 
 ---------------------------------------------------------------------------------
