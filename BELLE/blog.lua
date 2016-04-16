@@ -1,6 +1,6 @@
 -----------------------------------------------------------------------------------------
 --
--- view2.lua
+-- blog.lua
 --
 -----------------------------------------------------------------------------------------
 
@@ -9,7 +9,7 @@ local scene = composer.newScene()
 
 local widget = require( "widget" )
 
-local displayMode = "webpage"
+local displayMode = "post"
 local pageTitle 
 local icons
 local params
@@ -111,8 +111,8 @@ local function onRowRender(event)
  
     --local timeStamp = string.match(blogPost.pubDate,"%w+, %d+ %w+ %w+ %w+:%w+")
     local timeStamp = blogPost.pubDate
-    print(blogPost.pubDate)
-    print(timeStamp)
+    --print(blogPost.pubDate)
+    print("pubDate ["..timeStamp.."]")
     row.subtitle = display.newText( timeStamp, 12, 0, Constant, 14)
     row.subtitle.anchorX = 0
     row.subtitle:setFillColor( 0.375, 0.375, 0.375 )
@@ -143,7 +143,7 @@ local function showTableView()
             rowHeight = 60,
             isCategory = false,
             rowColor = { 1, 1, 1 },
-            lineColor = { 0.90, 0.90, 0.90 },
+            lineColor = { 0.30, 0.30, 0.30 },
             params = {
                 blogPost = blogPosts[i]
             }
@@ -185,7 +185,9 @@ end
 
 local function tableViewListener(event)
     print("tableViewListener", event.phase, event.direction, event.limitReached, myList:getContentPosition( ))
+
     if event.phase == "began" then
+
         local currentPosition = nil
         if event.target.parent.parent.getContentPosition then 
             currentPosition = event.target.parent.parent:getContentPosition( )
@@ -195,7 +197,9 @@ local function tableViewListener(event)
         needToReload = false
         spinner.isVisible = true
         spinner:start()
+
     elseif event.phase == "moved" then
+
         local currentPosition = nil
         if event.target.parent.parent.getContentPosition then
             currentPosition = event.target.parent.parent:getContentPosition( )
@@ -204,12 +208,15 @@ local function tableViewListener(event)
             needToReload = true
             --print("needToReload", needToReload, myList:getContentPosition( ), springStart + 60)
         end
+
     elseif event.phase == nil and event.direction == "down" and event.limitReached == true and needToReload then
+
         --print("reloading Table!")
         needToReload = false
         spinner:stop()
         spinner.isVisible = false
-        reloadTable()
+        --reloadTable()
+
     end
     return true
 end
@@ -235,11 +242,6 @@ function scene:create( event )
     reloadBar.isHitTestable = true
     reloadBar:addEventListener( "tap", reloadTable )
 
-	local box = display.newRect(0,0,display.contentWidth, display.contentHeight)
-    box:setFillColor( 0.8, 0.8, 0.8 )
-    box.anchorY = 0
-    box.y = display.contentHeight
-    sceneGroup:insert(box)
 
     spinner = widget.newSpinner({ 
         width = 32, 
