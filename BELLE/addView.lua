@@ -5,6 +5,7 @@
 -----------------------------------------------------------------------------------------
 
 local composer = require( "composer" )
+local widget = require( "widget" )
 local scene = composer.newScene()
 function scene:create( event )
 	local sceneGroup = self.view
@@ -31,9 +32,17 @@ function scene:create( event )
 	text1.x = display.contentWidth * 0.5
 	text1.y = 70
 
+	local text3 = display.newText( "Temperature", 0, 0, native.systemFont, 20 )
+	text3:setFillColor( 0 )	-- black
+	text3.x = display.contentWidth * 0.5
+	text3.y = 250
+
+	local text4 = display.newText( "Humidity", 0, 0, native.systemFont, 20 )
+	text4:setFillColor( 0 )	-- black
+	text4.x = display.contentWidth * 0.5
+	text4.y = 330
+
 	productGroup = display.newGroup()
-
-
 	text2 = {}
 	textfield = {}
 	for a = 1, 4, 1 do
@@ -46,15 +55,71 @@ function scene:create( event )
 	    productGroup:insert(textfield[a])
 	end
 
-	local addBackground = display.newRect( display.contentCenterX, 250, display.contentWidth * 0.8, 30 )
+	local addBackground = display.newRect( display.contentCenterX, 410, display.contentWidth * 0.8, 30 )
 	addBackground:setFillColor( 0 )	
-	local add = display.newText( "+", display.contentCenterX, 250, native.systemFont, 30 )
+	local add = display.newText( "+", display.contentCenterX, 410, native.systemFont, 30 )
 	add:setFillColor( 1 )
+
+local radioGroup = display.newGroup()
+
+-- Create two associated radio buttons (inserted into the same display group)
+local radioButton1 = widget.newSwitch(
+    {
+        left = 30,
+        top = 270,
+        style = "radio",
+        id = "RadioButton1",
+        initialSwitchState = true,
+        onPress = onSwitchPress
+    }
+)
+radioGroup:insert( radioButton1 )
+
+local radioButton2 = widget.newSwitch(
+    {
+        left = display.contentCenterX,
+        top = 270,
+        style = "radio",
+        id = "RadioButton2",
+        onPress = onSwitchPress
+    }
+)
+radioGroup:insert( radioButton2 )
+
+local radioGroup2 = display.newGroup()
+
+-- Create two associated radio buttons (inserted into the same display group)
+local radioButton3 = widget.newSwitch(
+    {
+        left = 30,
+        top = 350,
+        style = "radio",
+        id = "RadioButton1",
+        initialSwitchState = true,
+        onPress = onSwitchPress
+    }
+)
+radioGroup2:insert( radioButton3 )
+
+local radioButton4 = widget.newSwitch(
+    {
+        left = display.contentCenterX,
+        top = 350,
+        style = "radio",
+        id = "RadioButton2",
+        onPress = onSwitchPress
+    }
+)
+radioGroup2:insert( radioButton4 )
 
 	-- all objects must be added to group (e.g. self.view)
 	sceneGroup:insert( bg )
 	sceneGroup:insert( title )
-	addBackground:addEventListener( "tap", addProduct )
+	sceneGroup:insert( text1 )
+	sceneGroup:insert( text3 )
+	sceneGroup:insert( text4 )
+	sceneGroup:insert( productGroup )
+--	addBackground:addEventListener( "tap", addProduct )
 end
 
 function scene:show( event )
