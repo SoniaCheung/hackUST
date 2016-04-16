@@ -6,7 +6,6 @@
 
 local composer = require( "composer" )
 local scene = composer.newScene()
-
 function scene:create( event )
 	local sceneGroup = self.view
 	
@@ -22,41 +21,40 @@ function scene:create( event )
 	bg:setFillColor( 1 )	-- white
 	
 	-- create some text
-	local title = display.newText( "Diary", 0, 0, native.systemFont, 32 )
+	local title = display.newText( "Add new routine", 0, 0, native.systemFont, 32 )
 	title:setFillColor( 0 )	-- black
 	title.x = display.contentWidth * 0.5
 	title.y = 32
 	
-	local addBackground = display.newRect( display.contentCenterX, 70, display.contentWidth * 0.8, 30 )
+	local text1 = display.newText( "Routine", 0, 0, native.systemFont, 20 )
+	text1:setFillColor( 0 )	-- black
+	text1.x = display.contentWidth * 0.5
+	text1.y = 70
+
+	productGroup = display.newGroup()
+
+
+	text2 = {}
+	textfield = {}
+	for a = 1, 4, 1 do
+		text2[a] = display.newText( "Product", 0, 0, native.systemFont, 16 )
+		text2[a]:setFillColor( 0 )	-- black
+		text2[a].x = 65
+		text2[a].y = 35 * a +70
+		textfield[a] = native.newTextField( display.contentCenterX + 35, 35 * a +70, display.contentWidth * 0.6, 25 )
+	    productGroup:insert(text2[a])
+	    productGroup:insert(textfield[a])
+	end
+
+	local addBackground = display.newRect( display.contentCenterX, 250, display.contentWidth * 0.8, 30 )
 	addBackground:setFillColor( 0 )	
-	local add = display.newText( "+", display.contentCenterX, 70, native.systemFont, 30 )
-	add:setFillColor( 1 )	
+	local add = display.newText( "+", display.contentCenterX, 250, native.systemFont, 30 )
+	add:setFillColor( 1 )
 
-
-	local tab1 = display.newText( "Routine", 0, 0, native.systemFont, 16 )
-	local tab2 = display.newText( "Weather", 0, 0, native.systemFont, 16 )
-	local tab3 = display.newText( "Satisfaction", 0, 0, native.systemFont, 16 )
-
-	tab1.x = display.contentWidth * 0.2
-	tab2.x = display.contentWidth * 0.5
-	tab3.x = display.contentWidth * 0.8
-	tab1.y = 110
-	tab2.y = 110
-	tab3.y = 110
-	tab1:setFillColor( 0 )
-	tab2:setFillColor( 0 )
-	tab3:setFillColor( 0 )
-	
 	-- all objects must be added to group (e.g. self.view)
 	sceneGroup:insert( bg )
 	sceneGroup:insert( title )
-	sceneGroup:insert( tab1 )
-	sceneGroup:insert( tab2 )
-	sceneGroup:insert( tab3 )
-	sceneGroup:insert( addBackground )
-	sceneGroup:insert( add )
-	addBackground:addEventListener( "tap", addList )
-
+	addBackground:addEventListener( "tap", addProduct )
 end
 
 function scene:show( event )
@@ -70,6 +68,7 @@ function scene:show( event )
 		-- 
 		-- INSERT code here to make the scene come alive
 		-- e.g. start timers, begin animation, play audio, etc.
+		--Add objects for buttons to buttonGroup
 	end	
 end
 
@@ -97,11 +96,10 @@ function scene:destroy( event )
 end
 
 ---------------------------------------------------------------------------------
+function addProduct()
+	productGroup:removeSelf()
+	productGroup = display.newGroup()
 
-function addList()
-	print( "object tapped")
-	composer.removeScene( "view2")
-	composer.gotoScene( "addView" )
 end
 -- Listener setup
 scene:addEventListener( "create", scene )
