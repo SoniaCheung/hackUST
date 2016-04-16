@@ -64,13 +64,6 @@ end
 function scene:create( event )
     local sceneGroup = self.view
 
-    local blogPost = event.params.blogPost
-        
-    --
-    -- setup a page background, really not that important, but if we don't
-    -- have at least one display object in the view, it will crash.
-    --
-
     print("create scene")
     local background = display.newRect(0,0,display.contentWidth, display.contentHeight)
     background:setFillColor( 1, 1, 1 )
@@ -80,37 +73,20 @@ function scene:create( event )
     sceneGroup:insert(background)
 
 
-    local postTitle = blogPost.title
-    
-    local postTime = blogPost.pubDate
-
-    local title = display.newText( postTitle, 0, 0, native.systemFont, 20)
+    local title = display.newText("New Post", 0, 0, native.systemFont, 20)
     title:setFillColor( 0 ) -- black
     title.x = display.contentWidth * 0.5
     title.y = 80
     
-    local writeDate = display.newText(postTime, 0, 0, native.systemFont, 14)
-    writeDate:setFillColor(0.5)
-    writeDate.x = display.contentWidth * 0.5
-    writeDate.y = 110
-
-    local newTextParams = { text = blogPost.content, 
-                            x = 30, y = 0, 
-                            width = 310, height = 310, 
-                            font = native.systemFont, fontSize = 13, 
-                            align = "left" }
-    local summary = display.newText( newTextParams )
-    summary:setFillColor( 0 ) -- black
-    summary.x = display.contentWidth * 0.5 + 10
-    summary.y = title.y + 215
-    
+    -- all objects must be added to group (e.g. self.view)
+ 
 
     local tabBar = display.newRect(0,0,display.contentWidth, 50)
     tabBar:setFillColor(0.8,0.8,0.8)
     tabBar.x = display.contentWidth / 2
     tabBar.y = 50 / 2
 
-     local backPost = widget.newButton(
+    local backPost = widget.newButton(
         {
             left = 0,
             top = 0,
@@ -120,26 +96,49 @@ function scene:create( event )
         }
     )
 
-    
+    local submitPost = widget.newButton(
+        {
+            left = display.contentWidth-150,
+            top = 0,
+            id = "submitPost",
+            label = "SUBMIT",
+            onEvent = goBack
+        }
+    )
+    local titleDis = display.newText("Title", 0, 0, native.systemFont, 15)
+    titleDis:setFillColor( 0 ) -- black
+    titleDis.x = 65
+    titleDis.y = 140
+
+    local titleField = native.newTextField( 150, 170, 200, 30 )
+
+    local contentDis = display.newText("Content", 0, 0, native.systemFont, 15)
+    contentDis:setFillColor( 0 ) -- black
+    contentDis.x = 80
+    contentDis.y = 210
+
+    local contentField = native.newTextBox( 150, 300, 200, 150 )
+    contentField.isEditable = true
 
 
     -- all objects must be added to group (e.g. self.view)
+    sceneGroup:insert(titleDis)
+    sceneGroup:insert(contentDis)
+    sceneGroup:insert(titleField)
+    sceneGroup:insert(contentField)
     sceneGroup:insert( title )
-    sceneGroup:insert( writeDate )
-    sceneGroup:insert( summary )
     sceneGroup:insert(tabBar)
     sceneGroup:insert(backPost)
+    sceneGroup:insert(submitPost)
 end
 
 function scene:show( event )
     local sceneGroup = self.view
 
     -- load the blogPost data in from global space, was put there in feed.lua
-    local blogPost = event.params.blogPost
 
     if event.phase == "did" then
-        local postTitle = blogPost.title
-        local postTime = blogPost.pubDate
+
     end              
 end
 
