@@ -22,12 +22,12 @@ function scene:create( event )
 	bg:setFillColor( 1 )	-- white
 	
 	-- create some text
-	local title = display.newText( "Own Profile ＋ fds profile", 0, 0, native.systemFont, 32 )
+	local title = display.newText( "Own Profile", 0, 0, native.systemFont, 32 )
 	title:setFillColor( 0 )	-- black
 	title.x = display.contentWidth * 0.5
 	title.y = 125
 	
-	local newTextParams = { text = "TODO\n皮皮 － profile", 
+	local newTextParams = { text = "TODO\n皮皮 － profile and friends list things", 
 							x = 0, y = 0, 
 							width = 310, height = 310, 
 							font = native.systemFont, fontSize = 14, 
@@ -79,6 +79,42 @@ function scene:destroy( event )
 	-- INSERT code here to cleanup the scene
 	-- e.g. remove display objects, remove touch listeners, save state, etc.
 end
+
+-- button for My Cosmo Bag
+local widget = require( "widget" )
+
+-- Function to handle button events
+local function handleButtonEvent( event )
+
+    if ( "ended" == event.phase ) then
+    	composer.gotoScene( "view4-database" )
+        print( "Button was pressed and released" )
+    end
+end
+
+-- Create the widget
+local button1 = widget.newButton(
+    {
+        label = "button",
+        onEvent = handleButtonEvent,
+        emboss = false,
+        -- Properties for a rounded rectangle button
+        shape = "roundedRect",
+        width = 200,
+        height = 40,
+        cornerRadius = 2,
+        fillColor = { default={1, 0.2, 0.5, 0.7 }, over={ 1, 0.2, 0.5, 1} },
+        strokeColor = { default={0, 0, 0 }, over={ 0.4, 0.1, 0.2} },
+        strokeWidth = 4
+    }
+)
+
+-- Center the button
+button1.x = display.contentCenterX
+button1.y = display.contentCenterY
+
+-- Change the button's label text
+button1:setLabel( "My Cosmo Bag" )
 
 ---------------------------------------------------------------------------------
 
