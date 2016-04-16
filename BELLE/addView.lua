@@ -146,7 +146,7 @@ function scene:create( event )
 	sceneGroup:insert( radioGroup2 )
 	sceneGroup:insert( addBackground )
 	sceneGroup:insert( add )
---	addBackground:addEventListener( "tap", addProduct )
+	addBackground:addEventListener( "tap", addProduct )
 end
 
 function scene:show( event )
@@ -195,7 +195,14 @@ end
 
 ---------------------------------------------------------------------------------
 function addProduct()
-
+	for a = 1, 4, 1 do
+		if textfield[a] then
+			textfield[a]: removeSelf()
+			textfield[a] = nil
+		end
+	end
+	composer.removeScene( "addView")
+	composer.gotoScene( "view2" )
 end
 -- Listener setup
 scene:addEventListener( "create", scene )
