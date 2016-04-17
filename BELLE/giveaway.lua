@@ -15,7 +15,7 @@ local scene = composer.newScene( sceneName )
 
 function onButtonAddClicked( event )
     if event.phase == "ended" then
-        composer.gotoScene( "giveawayAdd" )
+        _G.topTabBar:setSelected(1, true)
     end
 end
 
