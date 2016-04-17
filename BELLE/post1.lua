@@ -39,11 +39,11 @@ function scene:create( event )
 	-- summary.x = display.contentWidth * 0.5 + 10
 	-- summary.y = title.y + 215
 
-	local pic = display.newImage ("img/button/darkWood.jpg")--, 0, 0, display.contentWidth, display.contentHeight)
-	pic.height = display.contentHeight-10
-	pic.width = display.contentWidth
-	pic.x = display.contentWidth/2
-	pic.y = display.contentHeight/2
+	--local pic = display.newImage ("img/button/darkWood.jpg")--, 0, 0, display.contentWidth, display.contentHeight)
+	--pic.height = display.contentHeight-10
+	--pic.width = display.contentWidth
+	--pic.x = display.contentWidth/2
+	--pic.y = display.contentHeight/2
 
 	local panel = display.newRoundedRect (display.contentWidth/2+14, display.contentHeight/2+30, display.contentWidth-60, 1000, 20)
 	panel:setFillColor(0.9, 0.66, 0.5, 0.6)
@@ -63,7 +63,7 @@ function scene:create( event )
 	        verticalScrollDisabled = false,
 	        listener = scrollListener,
 	        cornerRadius = 12,
-	        backgroundColor = {0.9, 0.66, 0.5, 0.0}
+	        backgroundColor = {0.9, 0.66, 0.5, 1.0}
 	    }
 	)
 
@@ -148,16 +148,16 @@ function scene:create( event )
 
 
 	scrollView:insert(panel)
-	-- scrollView:insert(proPic)
-	-- scrollView:insert(myText)
-	-- scrollView:insert(myText2)
-	-- scrollView:insert(myText3)
-	-- scrollView:insert(myText4)
-	-- scrollView:insert(myText5)
-	-- scrollView:insert(myText6)
+	scrollView:insert(proPic)
+	scrollView:insert(myText)
+	scrollView:insert(myText2)
+	scrollView:insert(myText3)
+	scrollView:insert(myText4)
+	scrollView:insert(myText5)
+	scrollView:insert(myText6)
 
-	sceneGroup:insert(pic)
-	sceneGroup:insert(scrollView)
+	--sceneGroup:insert(pic)
+	--sceneGroup:insert(scrollView)
 
 
 end
