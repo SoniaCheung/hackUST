@@ -143,8 +143,6 @@ function scene:create( event )
 	--sceneGroup:insert( summary )
 	--sceneGroup:insert(scrollView)
 	
-
-
 	
 	-- scrollView:insert(proPic)
 	-- scrollView:insert(myText)
