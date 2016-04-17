@@ -19,58 +19,74 @@ function scene:create( event )
 	local bg = display.newRect( 0, 0, display.contentWidth, display.contentHeight )
 	bg.anchorX = 0
 	bg.anchorY = 0
-	bg:setFillColor( 1 )	-- white
+	bg:setFillColor( 0.86, 0.61, 0.61 )	-- white
 	local text = {}
 	textGroup = display.newGroup()
 
 	-- create some text
 	local title = display.newText( "Routine 1", 0, 0, native.systemFont, 32 )
-	title:setFillColor( 0 )	-- black
+	title:setFillColor( 1 )	-- black
 	title.x = display.contentWidth * 0.5
 	title.y = 32
 
 	text[0] = display.newText( "Product", display.contentWidth * 0.5, 60, native.systemFont, 20 )
-	text[0]:setFillColor( 0 )	-- black
+	text[0]:setFillColor( 1 )	-- black
 	textGroup:insert(text[0])
 
 	productGroup = display.newGroup()
 	name = {}
 	for a = 1, 4, 1 do
 		name[a] = display.newText( "Product" .. a, 50, 60 + a * 25 , native.systemFont, 16 )
-		name[a]:setFillColor( 0 )	-- black
+		name[a]:setFillColor( 1 )	-- black
 	    productGroup:insert(name[a])
 	end
+	
+	divLine = {};
+	lineGroup = display.newGroup()
+	divLine[0] = display.newImage("img/profile/line2.png")
+	divLine[0].width = display.contentWidth * 4/5
+	divLine[0].height = 7
+	divLine[0].x = display.contentCenterX
+	divLine[0].y = 180
+	lineGroup:insert(divLine[0])
 
 	text[1] = display.newText( "Temperature", display.contentWidth * 0.5, 190, native.systemFont, 20 )
-	text[1]:setFillColor( 0 )	-- black
+	text[1]:setFillColor( 1 )	-- black
 	textGroup:insert(text[1])
 
 	text[2] = display.newText( "Hot" , 50, 210 , native.systemFont, 16 )
-	text[2]:setFillColor( 0 )
+	text[2]:setFillColor( 1 )
 	textGroup:insert(text[2])
-
+	
+	divLine[1] = display.newImage("img/profile/line2.png")
+	divLine[1].width = display.contentWidth * 4/5
+	divLine[1].height = 7
+	divLine[1].x = display.contentCenterX
+	divLine[1].y = 330
+	lineGroup:insert(divLine[1])
+	
 	text[3] = display.newText( "Humidity", display.contentWidth * 0.5, 240, native.systemFont, 20 )
-	text[3]:setFillColor( 0 )	-- black
+	text[3]:setFillColor( 1 )	-- black
 	textGroup:insert(text[3])
 
 	text[4] = display.newText( "Dry" , 50, 260 , native.systemFont, 16 )
-	text[4]:setFillColor( 0 )
+	text[4]:setFillColor( 1 )
 	textGroup:insert(text[4])
 
 	text[5] = display.newText( "Satisfaction", display.contentWidth * 0.5, 290, native.systemFont, 20 )
-	text[5]:setFillColor( 0 )	-- black
+	text[5]:setFillColor( 1 )	-- black
 	textGroup:insert(text[5])
 	
 	text[6] = display.newText( "Fair" , 50, 310 , native.systemFont, 16 )
-	text[6]:setFillColor( 0 )
+	text[6]:setFillColor( 1 )
 	textGroup:insert(text[6])
 
 	text[7] = display.newText( "Comment", display.contentWidth * 0.5, 340, native.systemFont, 20 )
-	text[7]:setFillColor( 0 )	-- black
+	text[7]:setFillColor( 1 )	-- black
 	textGroup:insert(text[7])
 
 	text[8] = display.newText( "Not as good as expected. \nMaybe I should replace Product 1 next time." , display.contentWidth * 0.5, 370 , native.systemFont, 16 )
-	text[8]:setFillColor( 0 )
+	text[8]:setFillColor( 1 )
 	textGroup:insert(text[8])
 
 

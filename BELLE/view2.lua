@@ -28,7 +28,7 @@ function scene:create( event )
 	title.y = 32
 	
 	local addBackground = display.newRect( display.contentCenterX, 70, display.contentWidth * 0.8, 30 )
-	addBackground:setFillColor( 0 )	
+	addBackground:setFillColor( 0.86, 0.61, 0.61 )	
 	local add = display.newText( "+", display.contentCenterX, 70, native.systemFont, 30 )
 	add:setFillColor( 1 )	
 
