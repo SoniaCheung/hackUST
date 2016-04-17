@@ -95,6 +95,7 @@ function scene:create( event )
 	sceneGroup:insert( title )
 	sceneGroup:insert( textGroup )
 	sceneGroup:insert( productGroup )
+	sceneGroup:insert( lineGroup )
 end
 
 function scene:show( event )
