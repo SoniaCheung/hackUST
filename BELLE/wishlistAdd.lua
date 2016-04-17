@@ -7,14 +7,25 @@
 local sceneName = ...
 
 local composer = require( "composer" )
+local widget = require( "widget" )
 
 -- Load scene with same root filename as this file
 local scene = composer.newScene( sceneName )
 
 -------------------------------------------------------------------------------
 
+function onButtonTickClicked( event )
+    if event.phase == "ended" then
+        _G.isWishlistLastItemVisible = true
+        composer.gotoScene( "wishlist" )
+    end
+end
+
 function scene:create( event )
     local sceneGroup = self.view
+
+    local buttonTick = self:getObjectByName( "Circle2" )
+    buttonTick:addEventListener("touch", onButtonTickClicked)
 
     -- Called when the scene's view does not exist
     -- 
