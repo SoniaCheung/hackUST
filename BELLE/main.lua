@@ -22,17 +22,17 @@ local function onMyItemView( event )
 end
 
 local function onWantItemView( event )
-	composer.gotoScene( "view1" )
+	composer.gotoScene( "wishlist" )
 end
 
 local function onGiveItemView( event )
-	composer.gotoScene( "view2" )
+	composer.gotoScene( "giveaway" )
 end
 
 _G.topTabButtons = {
 	{ label="My item", defaultFile="icon1.png", overFile="icon1-down.png", width = 32, height = 32, onPress=onMyItemView, selected=true },
-	{ label="Want item", defaultFile="icon2.png", overFile="icon2-down.png", width = 32, height = 32, onPress=onWantItemView },
-	{ label="Give item", defaultFile="icon2.png", overFile="icon2-down.png", width = 32, height = 32, onPress=onGiveItemView },
+	{ label="Wishlist", defaultFile="icon2.png", overFile="icon2-down.png", width = 32, height = 32, onPress=onWantItemView },
+	{ label="Giveaways", defaultFile="icon2.png", overFile="icon2-down.png", width = 32, height = 32, onPress=onGiveItemView },
 }
 
 -- create the actual tabBar widget
