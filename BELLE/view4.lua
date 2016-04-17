@@ -136,6 +136,7 @@ function addRowToScrollView()
 end
 
 function changeSceneProduct(event)
+	_G.topTabBar.isVisible = true
 	composer.gotoScene( "view4-database", {effect = "crossFade", time = 800} )
 	composer.removeScene( "view4" )
 end
