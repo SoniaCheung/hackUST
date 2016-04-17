@@ -220,6 +220,7 @@ end
 
 function handleButtonEvent ( event )
 	composer.gotoScene ("post1")
+	composer.removeScene( "view1" )
 end
 
 function scene:show( event )
