@@ -1,6 +1,6 @@
 -----------------------------------------------------------------------------------------
 --
--- view2.lua
+-- view4-friendList.lua
 --
 -----------------------------------------------------------------------------------------
 
@@ -24,31 +24,11 @@ function scene:create( event )
 	bg.anchorY = 0
 	bg:setFillColor( 1 )	-- white
 
-	local coverImg = display.newImage( "img/profile/coverPhoto.png")
-	coverImg.width = display.contentWidth
-	coverImg.height = display.contentHeight * 2/5
-	coverImg.x = display.contentCenterX
-	coverImg.y = 0
-
-	local profileImg = display.newImage( "img/profile/profileImg.png")
-	profileImg.width = 125
-	profileImg.height = 125
-	profileImg.x = display.contentCenterX
-	profileImg.y = display.contentHeight * 1/5
-
-	-- local addBtn = display.newImage("img/profile/addBtn.png")
-	-- addBtn.width = 50
-	-- addBtn.height = 50
-	-- addBtn.x = profileImg.x + hSpacing *2.5
-	-- addBtn.y = display.contentHeight * 1/5
-	-- addBtn:addEventListener( "tap", addFriend)
-
 	local  nameText = display.newImage("img/profile/SONIA.png")
 	nameText.width = 90
 	nameText.height = 70
-	nameText.rotation = -20
-	nameText.x = wSpacing * 2
-	nameText.y = profileImg.y + hSpacing * 0.75
+	nameText.x = display.contentCenterX
+	nameText.y = hSpacing 
 
 	local divLine1 = display.newImage("img/profile/line.png")
 	divLine1.width = display.contentWidth * 4/5
@@ -60,8 +40,8 @@ function scene:create( event )
 
 	scrollView = widget.newScrollView{ 
 							x = display.contentCenterX,
-							bottom = display.contentHeight,
-							height = display.contentHeight *2/3, width = display.contentWidth,
+							y = display.contentCenterY,
+							height = display.contentHeight, width = display.contentWidth,
 							horizontalScrollDisabled = true,
 							backgroundColor = { 0.86, 0.61, 0.61 }
 						}
@@ -70,9 +50,6 @@ function scene:create( event )
 	
 	-- all objects must be added to group (e.g. self.view)
 	sceneGroup:insert( bg )
-	sceneGroup:insert( coverImg)
-	sceneGroup:insert( profileImg)
-	--sceneGroup:insert( addBtn)
 	sceneGroup:insert( nameText)
 	sceneGroup:insert( scrollView)
 	sceneGroup:insert( divLine1)
@@ -85,9 +62,9 @@ end
 
 function addRowToScrollView()
 
-	local nameSection = {"My SkinType :: Combination - Oily", "Age Group :: 20 - 30","My Cosmetic", "My Friend"}
-	local iconSection = {"", "", "img/profile/makeupBag.png", "img/profile/friend.png"}
-	local line = {"0","1","1","0"}
+	local nameSection = {"Ronnie", "Ivy","Neyva", "Steve"}
+	local iconSection = {"img/profile/friendImg2.png", "img/profile/friendImg3.png", "img/profile/friendImg4.png", "img/profile/friendImg5.png"}
+	local line = {"1","1","1","0"}
 	local sectionBlock = {}
 	local iconBlock = {}
 	local lineImg = {}
@@ -96,20 +73,17 @@ function addRowToScrollView()
 		sectionBlock[i].x = display.contentCenterX
 		if i == 1 then
 			sectionBlock[i].y = hSpacing
-		else if i ==2 then
-				sectionBlock[i].y = sectionBlock[i-1].y + hSpacing * 0.5
-			else
-				sectionBlock[i].y = sectionBlock[i-1].y + hSpacing *1.5
-			end
+		else
+			sectionBlock[i].y = sectionBlock[i-1].y + hSpacing *1.5
 		end
 
-		if i == 3 then
-			sectionBlock[i]:addEventListener("tap",changeSceneProduct)
-		else if i == 4 then
-			sectionBlock[i]:addEventListener("tap",changeSceneFriendList)
+		-- if i == 3 then
+		-- 	sectionBlock[i]:addEventListener("tap",changeSceneProduct)
+		-- else if i == 4 then
+		-- 	sectionBlock[i]:addEventListener("tap",changeSceneFriendList)
 
-			end
-		end
+		-- 	end
+		-- end
 
 		if line[i] == "1" then
 			lineImg[i] = display.newImage("img/profile/line2.png")
@@ -123,9 +97,9 @@ function addRowToScrollView()
 
 		if iconSection[i] ~= "" then
 			iconBlock[i] = display.newImage(iconSection[i])
-			iconBlock[i].width = 35
-			iconBlock[i].height = 35
-			iconBlock[i].x = display.contentCenterX - hSpacing * 2
+			iconBlock[i].width = 45
+			iconBlock[i].height = 45
+			iconBlock[i].x = display.contentCenterX - hSpacing * 3
 			iconBlock[i].y = sectionBlock[i].y
 		else
 			iconBlock[i] = display.newText("", 150, 40, native.systemFont, 16)
@@ -145,7 +119,7 @@ function changeSceneProduct(event)
 end
 
 function changeSceneFriendList(event)
-	_G.topTabBar.isVisible = false
+	_G.topTabBar.isVisible = true
 	composer.gotoScene( "view4-friendList", {effect = "crossFade", time = 800} )
 	composer.removeScene( "view4" )
 end

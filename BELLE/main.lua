@@ -11,7 +11,6 @@ display.setStatusBar( display.DefaultStatusBar )
 local widget = require "widget"
 local composer = require "composer"
 
-
 -----------------------------------------------------------------------------------------
 
 
@@ -42,7 +41,6 @@ _G.topTabBar = widget.newTabBar{
 }
 
 -----------------------------------------------------------------------------------------
-
 
 -- event listeners for tab buttons:
 local function onFirstView( event )
@@ -77,9 +75,55 @@ local tabButtons = {
 
 -- create the actual tabBar widget
 local tabBar = widget.newTabBar{
-	top = display.contentHeight - 50,	-- 50 is default height for tabBar widget
+	top = display.contentHeight,
+	height = 40,
 	buttons = tabButtons
 }
+
+
+-----------------------------------------------------------------------------------------
+-- The Pink Color for the top status bar --
+local topStatusBar = display.newRect(display.contentWidth * 0.5, -25,display.contentWidth, 70)
+topStatusBar:setFillColor( 0.86, 0.61, 0.61)
+
+-- The Search Bar on the top --
+local  searchIcon = display.newImage("img/main/search.png")
+searchIcon.width = 30
+searchIcon.height = 30
+searchIcon.x = 30
+searchIcon.y = -10
+
+function changeSceneLily(event)
+	_G.topTabBar.isVisible = false
+	composer.gotoScene( "view4-friend", {effect = "crossFade", time = 800} )
+	composer.removeScene( "view4" )
+end
+
+local function textListener( event )
+
+    if ( event.phase == "began" ) then
+        -- user begins editing defaultField
+        print( event.text )
+
+    elseif ( event.phase == "ended" or event.phase == "submitted" ) then
+        -- do something with defaultField text
+
+        print( event.target.text )
+        changeSceneLily()
+
+    elseif ( event.phase == "editing" ) then
+        print( event.text )
+    end
+end
+
+local searchTextField = native.newTextField( display.contentCenterX + 20, -10, display.contentWidth * 4/5, 25)
+searchTextField.inputType = "default"
+searchTextField.placeholder = "Please type the key word"
+searchTextField.size = 20
+searchTextField.align = "left"
+searchTextField:setTextColor( 0.86, 0.61, 0.61)
+searchTextField:addEventListener( "userInput", textListener)
+
 
 
 onFirstView()	-- invoke first tab button's onPress event manually
