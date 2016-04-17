@@ -67,10 +67,10 @@ end
 
 -- table to setup buttons
 local tabButtons = {
-	{ label="Newsfeed", defaultFile="icon1.png", overFile="icon1-down.png", width = 32, height = 32, onPress=onFirstView, selected=true },
-	{ label="Diary", defaultFile="icon2.png", overFile="icon2-down.png", width = 32, height = 32, onPress=onSecondView },
-	{ label="扮靚Tips", defaultFile="icon2.png", overFile="icon2-down.png", width = 32, height = 32, onPress=onThirdView },
-	{ label="My Profile", defaultFile="icon2.png", overFile="icon2-down.png", width = 32, height = 32, onPress=onForthView },
+	{ label="Newsfeed", defaultFile="img/icon/news-2.png", overFile="img/icon/news-1.png", width = 28, height = 24, onPress=onFirstView, selected=true },
+	{ label="Diary", defaultFile="img/icon/database-2.png", overFile="img/icon/database-1.png", width = 28, height = 24, onPress=onSecondView },
+	{ label="扮靚Tips", defaultFile="img/icon/tips-2.png", overFile="img/icon/tips-1.png", width = 28, height = 24, onPress=onThirdView },
+	{ label="My Profile", defaultFile="img/icon/profile-2.png", overFile="img/icon/profile-1.png", width = 28, height = 24, onPress=onForthView },
 }
 
 -- create the actual tabBar widget
