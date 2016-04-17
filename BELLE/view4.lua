@@ -60,11 +60,12 @@ function scene:create( event )
 
 	scrollView = widget.newScrollView{ 
 							x = display.contentCenterX,
-							height = display.contentHeight * 3/5, width = display.contentWidth,
+							bottom = display.contentHeight,
+							height = display.contentHeight *2/3, width = display.contentWidth,
 							horizontalScrollDisabled = true,
 							backgroundColor = { 0.86, 0.61, 0.61 }
 						}
-	scrollView.y = display.contentHeight * 2/3 - hSpacing * 0.15
+	scrollView.y = display.contentHeight * 2/3 + hSpacing * 0.25
 	addRowToScrollView()
 	
 	-- all objects must be added to group (e.g. self.view)
@@ -74,6 +75,7 @@ function scene:create( event )
 	sceneGroup:insert( addBtn)
 	sceneGroup:insert( nameText)
 	sceneGroup:insert( scrollView)
+	sceneGroup:insert( divLine1)
 end
 
 -- TO-DO: Add Friend Function
@@ -134,6 +136,7 @@ function addRowToScrollView()
 end
 
 function changeSceneProduct(event)
+	_G.topTabBar.isVisible = true
 	composer.gotoScene( "view4-database", {effect = "crossFade", time = 800} )
 	composer.removeScene( "view4" )
 end
