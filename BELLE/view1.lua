@@ -24,20 +24,20 @@ function scene:create( event )
 	--bg:setFillColor( 1, .7, .7 )	-- white
 	
 	-- create some text
-	local title = display.newText( "First View", 0, 0, native.systemFont, 32 )
-	title:setFillColor( 1 )	-- black
-	title.x = display.contentWidth * 0.5
-	title.y = 125
+	--local title = display.newText( "First View", 0, 0, native.systemFont, 32 )
+	--title:setFillColor( 1 )	-- black
+	--title.x = display.contentWidth * 0.5
+	--title.y = 125
 	
-	local newTextParams = { text = "Loaded by the first tab's\n\"onPress\" listener\nspecified in the 'tabButtons' table", 
-						x = 0, y = 0, 
-						width = 310, height = 310, 
-						font = native.systemFont, fontSize = 14, 
-						align = "center" }
-	local summary = display.newText( newTextParams )
-	summary:setFillColor( 0 ) -- black
-	summary.x = display.contentWidth * 0.5 + 10
-	summary.y = title.y + 215
+	--local newTextParams = { text = "Loaded by the first tab's\n\"onPress\" listener\nspecified in the 'tabButtons' table", 
+	--					x = 0, y = 0, 
+	--					width = 310, height = 310, 
+	--					font = native.systemFont, fontSize = 14, 
+	--					align = "center" }
+	--local summary = display.newText( newTextParams )
+	--summary:setFillColor( 0 ) -- black
+	--summary.x = display.contentWidth * 0.5 + 10
+	--summary.y = title.y + 215
 
 
 	-- MY CODE --
@@ -53,7 +53,7 @@ function scene:create( event )
 	        scrollWidth = display.contentWidth,
 	        scrollHeight = 100,
 	        topPadding = 50,
-	        bottomPadding = 50,
+	        bottomPadding = 0,
 	        horizontalScrollDisabled = true,
 	        verticalScrollDisabled = false,
 	        listener = scrollListener,
@@ -65,7 +65,6 @@ function scene:create( event )
 
 	--local pic = display.newImageRect( "img/button/flower.jpg", display.contentWidth*2, 50)--display.contentHeight*2 )
 
-
 	local Word = {
 		left = 10,
 		top = 0,
@@ -73,6 +72,7 @@ function scene:create( event )
 		height = 40,
 		defaultFile = "img/button/white.bmp",
 		overFile = "img/button/white.bmp",
+		labelColor = { default={ 0, 0, 0, 0.6 }, over={ 0, 0, 0, 0.3 } }
 	}
 
 	local WordShort = {
@@ -82,12 +82,15 @@ function scene:create( event )
 		height = 40,
 		defaultFile = "img/button/white.bmp",
 		overFile = "img/button/white.bmp",
+		labelColor = { default={ 0, 0, 0, 0.6 }, over={ 0, 0, 0, 0.3 } }
 	}
 
 	--local buttonGroup = display.newGroup ()
 	--buttonGroup:insert (button)
 	local word = {}
 	local w = 0
+
+	--local t1 = display.newText("How NOT to Cake Your Makeup",  )
 
 	local shortButton = widget.newButton ({
 		left = 10,
@@ -96,10 +99,9 @@ function scene:create( event )
 		height = 120,
 		defaultFile = "img/button/smokey.jpg",
 		overFile = "",
-		--onEvent = handleButtonEvent,
+		onEvent = handleButtonEvent,
 	})
 	shortButton.y = 30
-	scrollView:insert( shortButton )
 	word[w] = widget.newButton (Word)
 	word[w].y = 110
 	word[w]:setLabel ("How NOT to Cake Your Makeup")
@@ -186,7 +188,6 @@ function scene:create( event )
 	w = w + 1
 
 	w = w - 2
-
 	for i = 0, 1, 1 do
 		--button[i] = widget.newButton (BlockOpt)
 		if i == 0 then
@@ -195,26 +196,21 @@ function scene:create( event )
 		else
 			button[i].y = 700+360*i
 		end
-		--button[i]:setLabel (title)
 		buttonGroup:insert ( button[i] )
 		word[w].y = 870+360*i
 		w = w + 1
 	end
-
-	
-	--word[w]:setLabel ("Best Foundations for All Skin Types")
-
 	scrollView:insert(buttonGroup)
 
 	-- all objects must be added to group (e.g. self.view)
 	sceneGroup:insert( bg )
 	--sceneGroup:insert ( pic )
-	sceneGroup:insert( title )
-	sceneGroup:insert( summary )
+	--sceneGroup:insert( title )
+	--sceneGroup:insert( summary )
 
 	-- MY CODE --
 	sceneGroup:insert( scrollView )
-	
+	scrollView:insert( shortButton )
 	scrollView:insert(longButton)
 	scrollView:insert(smallButton[0])
 	scrollView:insert(smallButton[1])
@@ -223,7 +219,7 @@ function scene:create( event )
 end
 
 function handleButtonEvent ( event )
-	composer.gotoScene ("view4")
+	composer.gotoScene ("post1")
 end
 
 function scene:show( event )
