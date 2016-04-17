@@ -24,26 +24,26 @@ function scene:create( event )
 	bg.anchorY = 0
 	bg:setFillColor( 1 )	-- white
 
-	local coverImg = display.newImage( "img/profile/coverPhoto.png")
+	local coverImg = display.newImage( "img/profile/coverPhoto2.jpg")
 	coverImg.width = display.contentWidth
 	coverImg.height = display.contentHeight * 2/5
 	coverImg.x = display.contentCenterX
 	coverImg.y = 0
 
-	local profileImg = display.newImage( "img/profile/profileImg.png")
+	local profileImg = display.newImage( "img/profile/friendImg.png")
 	profileImg.width = 125
 	profileImg.height = 125
 	profileImg.x = display.contentCenterX
 	profileImg.y = display.contentHeight * 1/5
 
-	-- local addBtn = display.newImage("img/profile/addBtn.png")
-	-- addBtn.width = 50
-	-- addBtn.height = 50
-	-- addBtn.x = profileImg.x + hSpacing *2.5
-	-- addBtn.y = display.contentHeight * 1/5
-	-- addBtn:addEventListener( "tap", addFriend)
+	local addBtn = display.newImage("img/profile/addBtn.png")
+	addBtn.width = 50
+	addBtn.height = 50
+	addBtn.x = profileImg.x + hSpacing *2.5
+	addBtn.y = display.contentHeight * 1/5
+	addBtn:addEventListener( "tap", addFriend)
 
-	local  nameText = display.newImage("img/profile/SONIA.png")
+	local  nameText = display.newImage("img/profile/Lily.png")
 	nameText.width = 90
 	nameText.height = 70
 	nameText.rotation = -20
@@ -72,7 +72,7 @@ function scene:create( event )
 	sceneGroup:insert( bg )
 	sceneGroup:insert( coverImg)
 	sceneGroup:insert( profileImg)
-	--sceneGroup:insert( addBtn)
+	sceneGroup:insert( addBtn)
 	sceneGroup:insert( nameText)
 	sceneGroup:insert( scrollView)
 	sceneGroup:insert( divLine1)
@@ -85,7 +85,7 @@ end
 
 function addRowToScrollView()
 
-	local nameSection = {"My SkinType :: Combination - Oily", "Age Group :: 20 - 30","My Cosmetic", "My Friend"}
+	local nameSection = {"My SkinType :: Dry", "Age Group :: 15 - 20","My Cosmetic", "My Friend"}
 	local iconSection = {"", "", "img/profile/makeupBag.png", "img/profile/friend.png"}
 	local line = {"0","1","1","0"}
 	local sectionBlock = {}
@@ -105,10 +105,7 @@ function addRowToScrollView()
 
 		if i == 3 then
 			sectionBlock[i]:addEventListener("tap",changeSceneProduct)
-		else if i == 4 then
-			sectionBlock[i]:addEventListener("tap",changeSceneFriendList)
-
-			end
+		else
 		end
 
 		if line[i] == "1" then
@@ -141,12 +138,6 @@ end
 function changeSceneProduct(event)
 	_G.topTabBar.isVisible = true
 	composer.gotoScene( "view4-database", {effect = "crossFade", time = 800} )
-	composer.removeScene( "view4" )
-end
-
-function changeSceneFriendList(event)
-	_G.topTabBar.isVisible = false
-	composer.gotoScene( "view4-friendList", {effect = "crossFade", time = 800} )
 	composer.removeScene( "view4" )
 end
 
