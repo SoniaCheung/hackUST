@@ -49,26 +49,27 @@ function scene:create( event )
 	panel:setFillColor(0.9, 0.66, 0.5, 0.6)
 	panel.y = 240
 
-	-- local scrollView = widget.newScrollView(
- -- 	   	{
-	--         top = 0,
-	--         left = 0,
-	--         width = display.contentWidth,
-	--         height = display.contentHeight-30,
-	--         scrollWidth = display.contentWidth,
-	--         scrollHeight = 100,
-	--         topPadding = 0,
-	--         bottomPadding = 0,
-	--         horizontalScrollDisabled = true,
-	--         verticalScrollDisabled = false,
-	--         backgroundColor = {0.9, 0.66, 0.5, 1.0}
-	--     }
-	-- )
+	local scrollView = widget.newScrollView(
+ 	   	{
+	        top = 40,
+	        left = 0,
+	        width = display.contentWidth,
+	        height = display.contentHeight-70,
+	        scrollWidth = display.contentWidth,
+	        scrollHeight = 100,
+	        topPadding = 0,
+	        bottomPadding = 0,
+	        horizontalScrollDisabled = true,
+	        verticalScrollDisabled = false,
+	        listener = scrollListener,
+	        backgroundColor = {0.9, 0.66, 0.5, 0.0}
+	    }
+	)
 
 	local txtTitle = {
 		text = "How NOT to Cake Your Makeup",
 		x = display.contentWidth/2+40,
-		y = 70,
+		y = 50,
 		width = 200,
 		fontSize = 20,
 		font = "Arial Black",
@@ -126,10 +127,10 @@ function scene:create( event )
 
 	local myText = display.newText (txtTitle)
 	local myText2 = display.newText (txtContent)
-	-- local myText3 = display.newText (txtSubtitle)
-	-- local myText4 = display.newText (txtContent2)
-	-- local myText5 = display.newText (txtSubtitle2)
-	-- local myText6 = display.newText (txtContent3)
+	local myText3 = display.newText (txtSubtitle)
+	local myText4 = display.newText (txtContent2)
+	local myText5 = display.newText (txtSubtitle2)
+	local myText6 = display.newText (txtContent3)
 
 	local proPic = display.newImage ("img/profile/profileImg.png")
 	proPic.height = 100
@@ -143,21 +144,24 @@ function scene:create( event )
 	--sceneGroup:insert( summary )
 	--sceneGroup:insert(scrollView)
 	
-	
-	-- scrollView:insert(proPic)
-	-- scrollView:insert(myText)
-	-- scrollView:insert(myText2)
-	-- scrollView:insert(myText3)
-	-- scrollView:insert(myText4)
-	-- scrollView:insert(myText5)
-	-- scrollView:insert(myText6)
-
 	sceneGroup:insert(pic)
 	sceneGroup:insert(panel)
+
+	scrollView:insert(proPic)
+	scrollView:insert(myText)
+	scrollView:insert(myText2)
+	scrollView:insert(myText3)
+	scrollView:insert(myText4)
+	scrollView:insert(myText5)
+	scrollView:insert(myText6)
+
+	sceneGroup:insert(scrollView)
+
+	
 	--sceneGroup:insert(scrollView)
-	sceneGroup:insert(proPic)
-	sceneGroup:insert(myText)
-	sceneGroup:insert(myText2)
+	-- sceneGroup:insert(proPic)
+	-- sceneGroup:insert(myText)
+	-- sceneGroup:insert(myText2)
 
 end
 
@@ -200,6 +204,26 @@ function scene:destroy( event )
 	-- 
 	-- INSERT code here to cleanup the scene
 	-- e.g. remove display objects, remove touch listeners, save state, etc.
+end
+
+local function scrollListener( event )
+
+    local phase = event.phase
+    if ( phase == "began" ) then print( "Scroll view was touched" )
+    elseif ( phase == "moved" ) then print( "Scroll view was moved" )
+    elseif ( phase == "ended" ) then print( "Scroll view was released" )
+    end
+
+    -- In the event a scroll limit is reached...
+    if ( event.limitReached ) then
+        if ( event.direction == "up" ) then print( "Reached bottom limit" )
+        elseif ( event.direction == "down" ) then print( "Reached top limit" )
+        --elseif ( event.direction == "left" ) then print( "Reached right limit" )
+        --elseif ( event.direction == "right" ) then print( "Reached left limit" )
+        end
+    end
+
+    return true
 end
 
 ---------------------------------------------------------------------------------
