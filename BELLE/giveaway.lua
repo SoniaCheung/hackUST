@@ -13,8 +13,17 @@ local scene = composer.newScene( sceneName )
 
 -------------------------------------------------------------------------------
 
+function onButtonAddClicked( event )
+    if event.phase == "ended" then
+        composer.gotoScene( "giveawayAdd" )
+    end
+end
+
 function scene:create( event )
     local sceneGroup = self.view
+
+    local buttonAdd = self:getObjectByName( "AddNew" )
+    buttonAdd:addEventListener("touch", onButtonAddClicked)
 
     -- Called when the scene's view does not exist
     -- 
