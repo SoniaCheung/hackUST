@@ -40,7 +40,7 @@ function scene:create( event )
 	summary.y = title.y + 215
 
 	local pic = display.newImage ("img/button/darkWood.jpg")--, 0, 0, display.contentWidth, display.contentHeight)
-	pic.height = display.contentHeight+5
+	pic.height = display.contentHeight-10
 	pic.width = display.contentWidth
 	pic.x = display.contentWidth/2
 	pic.y = display.contentHeight/2
