@@ -13,18 +13,9 @@ local scene = composer.newScene( sceneName )
 
 -------------------------------------------------------------------------------
 
-function onProductClicked( event )
-    if event.phase == "ended" then
-        composer.gotoScene( "scene1" )
-    end
-end
-
 function scene:create( event )
     local sceneGroup = self.view
-    local object = self:getObjectByName( "Object" )
-    object:addEventListener("touch", onProductClicked)
 
-    -- objects.addEventListener("touch", onProductClicked)
     -- Called when the scene's view does not exist
     -- 
     -- INSERT code here to initialize the scene
