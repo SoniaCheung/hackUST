@@ -93,6 +93,11 @@ searchIcon.height = 30
 searchIcon.x = 30
 searchIcon.y = -10
 
+function changeSceneLily(event)
+	_G.topTabBar.isVisible = false
+	composer.gotoScene( "view4-friend", {effect = "crossFade", time = 800} )
+	composer.removeScene( "view4" )
+end
 
 local function textListener( event )
 
@@ -102,7 +107,9 @@ local function textListener( event )
 
     elseif ( event.phase == "ended" or event.phase == "submitted" ) then
         -- do something with defaultField text
+
         print( event.target.text )
+        changeSceneLily()
 
     elseif ( event.phase == "editing" ) then
         print( event.text )
