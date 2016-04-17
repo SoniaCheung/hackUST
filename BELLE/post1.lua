@@ -18,10 +18,10 @@ function scene:create( event )
 	
 	-- create a white background to fill screen
 
-	local bg = display.newRect( 0, 0, display.contentWidth, display.contentHeight )
-	bg.anchorX = 0
-	bg.anchorY = 0
-	bg:setFillColor( 1 )	-- white
+	-- local bg = display.newRect( 0, 0, display.contentWidth, display.contentHeight )
+	-- bg.anchorX = 0
+	-- bg.anchorY = 0
+	-- bg:setFillColor( 1 )	-- white
 	
 	-- -- create some text
 	-- local title = display.newText( "Third View", 0, 0, native.systemFont, 32 )
@@ -39,33 +39,31 @@ function scene:create( event )
 	-- summary.x = display.contentWidth * 0.5 + 10
 	-- summary.y = title.y + 215
 
-	--local pic = display.newImage ("img/button/darkWood.jpg")--, 0, 0, display.contentWidth, display.contentHeight)
-	--pic.height = display.contentHeight-10
-	--pic.width = display.contentWidth
-	--pic.x = display.contentWidth/2
-	--pic.y = display.contentHeight/2
+	local pic = display.newImage ("img/button/darkWood.jpg")--, 0, 0, display.contentWidth, display.contentHeight)
+	pic.height = display.contentHeight-10
+	pic.width = display.contentWidth
+	pic.x = display.contentWidth/2
+	pic.y = display.contentHeight/2
 
-	local panel = display.newRoundedRect (display.contentWidth/2+14, display.contentHeight/2+30, display.contentWidth-60, 1000, 20)
+	local panel = display.newRoundedRect (display.contentWidth/2+14, display.contentHeight/2+30, display.contentWidth-60, 420, 20)
 	panel:setFillColor(0.9, 0.66, 0.5, 0.6)
-	panel.y = 530
+	panel.y = 240
 
-	local scrollView = widget.newScrollView(
-    	{
-	        top = 0,
-	        left = 0,
-	        width = display.contentWidth,
-	        height = display.contentHeight-30,
-	        scrollWidth = display.contentWidth,
-	        scrollHeight = 100,
-	        topPadding = 0,
-	        bottomPadding = 0,
-	        horizontalScrollDisabled = true,
-	        verticalScrollDisabled = false,
-	        listener = scrollListener,
-	        cornerRadius = 12,
-	        backgroundColor = {0.9, 0.66, 0.5, 1.0}
-	    }
-	)
+	-- local scrollView = widget.newScrollView(
+ -- 	   	{
+	--         top = 0,
+	--         left = 0,
+	--         width = display.contentWidth,
+	--         height = display.contentHeight-30,
+	--         scrollWidth = display.contentWidth,
+	--         scrollHeight = 100,
+	--         topPadding = 0,
+	--         bottomPadding = 0,
+	--         horizontalScrollDisabled = true,
+	--         verticalScrollDisabled = false,
+	--         backgroundColor = {0.9, 0.66, 0.5, 1.0}
+	--     }
+	-- )
 
 	local txtTitle = {
 		text = "How NOT to Cake Your Makeup",
@@ -128,10 +126,10 @@ function scene:create( event )
 
 	local myText = display.newText (txtTitle)
 	local myText2 = display.newText (txtContent)
-	local myText3 = display.newText (txtSubtitle)
-	local myText4 = display.newText (txtContent2)
-	local myText5 = display.newText (txtSubtitle2)
-	local myText6 = display.newText (txtContent3)
+	-- local myText3 = display.newText (txtSubtitle)
+	-- local myText4 = display.newText (txtContent2)
+	-- local myText5 = display.newText (txtSubtitle2)
+	-- local myText6 = display.newText (txtContent3)
 
 	local proPic = display.newImage ("img/profile/profileImg.png")
 	proPic.height = 100
@@ -147,18 +145,21 @@ function scene:create( event )
 	
 
 
-	scrollView:insert(panel)
-	scrollView:insert(proPic)
-	scrollView:insert(myText)
-	scrollView:insert(myText2)
-	scrollView:insert(myText3)
-	scrollView:insert(myText4)
-	scrollView:insert(myText5)
-	scrollView:insert(myText6)
+	
+	-- scrollView:insert(proPic)
+	-- scrollView:insert(myText)
+	-- scrollView:insert(myText2)
+	-- scrollView:insert(myText3)
+	-- scrollView:insert(myText4)
+	-- scrollView:insert(myText5)
+	-- scrollView:insert(myText6)
 
-	--sceneGroup:insert(pic)
+	sceneGroup:insert(pic)
+	sceneGroup:insert(panel)
 	--sceneGroup:insert(scrollView)
-
+	sceneGroup:insert(proPic)
+	sceneGroup:insert(myText)
+	sceneGroup:insert(myText2)
 
 end
 
@@ -188,6 +189,7 @@ function scene:hide( event )
 		-- e.g. stop timers, stop animation, unload sounds, etc.)
 	elseif phase == "did" then
 		-- composer.removeScene( "post1" )
+		--composer.removeAll()
 
 		-- Called when the scene is now off screen
 	end
