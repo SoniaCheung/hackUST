@@ -7,9 +7,14 @@
 local sceneName = ...
 
 local composer = require( "composer" )
+local transition = require( "transition" )
 
 -- Load scene with same root filename as this file
 local scene = composer.newScene( sceneName )
+
+local lastItem
+local buttonAdd
+local buttonAddBorder
 
 -------------------------------------------------------------------------------
 
@@ -19,12 +24,40 @@ function onProductClicked( event )
     end
 end
 
+function onPickPhotoComplete( event )
+    if event.completed then
+        transition.fadeIn( lastItem, {time = 500, transition = easing.inQuint} )
+        transition.moveTo( buttonAdd, {x = 162, time = 1000, transition = easing.outQuint} )
+        transition.moveTo( buttonAddBorder, {x = 162, time = 1000, transition = easing.outQuint} )
+    end
+end
+
+function onButtonAddClicked( event )
+    if event.phase == "ended" then
+        media.selectPhoto(
+        {
+            mediaSource = media.SavedPhotosAlbum,
+            listener = onPickPhotoComplete,
+            destination = { baseDir=system.TemporaryDirectory, filename="image.jpg", type="image" }
+        })
+    end
+end
+
 function scene:create( event )
     local sceneGroup = self.view
     local object = self:getObjectByName( "Object" )
     object:addEventListener("touch", onProductClicked)
 
-    -- objects.addEventListener("touch", onProductClicked)
+    buttonAddBorder = self:getObjectByName( "Rect" )
+    buttonAddBorder:addEventListener("touch", onButtonAddClicked)
+
+    lastItem = self:getObjectByName( "Object7" )
+    buttonAdd = self:getObjectByName( "Object8" )
+
+    buttonAdd.x = lastItem.x
+    buttonAddBorder.x = lastItem.x
+    lastItem.alpha = 0
+
     -- Called when the scene's view does not exist
     -- 
     -- INSERT code here to initialize the scene
